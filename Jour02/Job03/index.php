@@ -4,6 +4,9 @@ while($Nombre < 101) {
     if ($Nombre == 42) {
         echo "La Plateforme" . "<br />";
     }
+    elseif ($Nombre == 69) {
+        echo "Nice ;)" . "<br />";
+    }
     elseif ($Nombre < 21) {
         echo "<i>" . $Nombre . "</i><br />";
     }
