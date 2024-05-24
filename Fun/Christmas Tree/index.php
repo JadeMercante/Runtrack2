@@ -5,18 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            color: white;
+            background-color: black;
+        }
+        span{
+            animation: noel 3s linear infinite;
+            background-color: green;
+        }
+
+        .trunkes{
+            background-color: maroon;
+        }
+
+        @keyframes noel{
+            0%{
+                color: red;
+            }
+            20%{
+                color: orange;
+            }
+            40%{
+                color: yellow;
+            }
+            60%{
+                color: green;
+            }
+            80%{
+                color: blue;
+            }
+            100%{
+                color: purple;
+            }
+        }
+    </style>
 </head>
 <body>
 <?php 
-
 function top($height) {
+    $boules = array("&nbsp; ", "&nbsp; ", "&nbsp; ", "&nbsp; ", "<span>o</span>", "&nbsp; ", "&nbsp; ", "&nbsp; ", "&nbsp; ");
+    
     for ($i = 0; $i < $height; $i++) {
         for ($j = 0; $j < $height - $i; $j++) {
             echo "&nbsp;&nbsp;";
         }
         echo "/";
         for ($k = 0; $k < $i * 2; $k++) {
-            echo "*";
+            $rand = rand(1, 8);
+            echo "<span>". $boules[$rand] . "</span>";
         }
         echo "\\";
         echo "<br />";
@@ -24,6 +61,7 @@ function top($height) {
 }
 
 function leaves($height) {
+    $boules = array("&nbsp; ", "&nbsp; ", "&nbsp; ", "&nbsp; ", "<span>o</span>", "&nbsp; ", "&nbsp; ", "&nbsp; ", "&nbsp; ");
     for ($i = 0; $i < $height; $i++) {
         if ($i < 6) {
         }
@@ -33,7 +71,8 @@ function leaves($height) {
             }
             echo "/";
             for ($k = 0; $k < $i * 2; $k++) {
-                echo "*";
+                $rand = rand(1, 8);
+                echo "<span>". $boules[$rand] . "</span>";
             }
             echo "\\";
             echo "<br />";
@@ -48,7 +87,7 @@ function trunks($height) {
             }
         echo ("|");
         for ($j = 0; $j < $height; $j++) {
-            echo "&nbsp; ";
+            echo "<span class = 'trunkes'>&nbsp; </span>";
         }
         echo ("|");
         echo "<br />";
