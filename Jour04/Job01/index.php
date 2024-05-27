@@ -18,27 +18,55 @@
 
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $FirstNum = $_GET["Nombre"];
-
-            
-            // Look if they are pair or not
-            if ($FirstNum % 2 == 0) {
-                $FirstNumPair = "{$FirstNum}";
+            $count = 0;
+            if ($_GET["Nombre"] != "") {
+                $count++;
             }
-            else {
-                $FirstNumPair = "{$FirstNum}";
+            if ($_GET["Nombre2"] != "") {
+                $count++;
             }
+            if ($_GET["Nombre3"] != "") {
+                $count++;
+            }
+            if ($_GET["Nombre4"] != "") {
+                $count++;
+            }
+            if ($_GET["Nombre5"] != "") {
+                $count++;
+            }
+            if ($_GET["Nombre6"] != "") {
+                $count++;
+            }
+            if ($_GET["Nombre7"] != "") {
+                $count++;
+            }
+            if ($_GET["Nombre8"] != "") {
+                $count++;
+            }
+            if ($_GET["Nombre9"] != "") {
+                $count++;
+            }
+            $NombreDit = $count;
         }
     ?>
 
     <form method="GET">
-    FirstNum: <input type="number" name="Nombre" value = "200">
+    FirstNum: <input type="number" name="Nombre" value = "">
+    SecondNum: <input type="number" name="Nombre2" value = "">
+    ThirdNum: <input type="number" name="Nombre3" value = "">
+    ForthNum: <input type="number" name="Nombre4" value = "">
+    6thNum : <input type="number" name="Nombre5" value = "">
+    7thNum : <input type="number" name="Nombre6" value = "">
+    8thNum : <input type="number" name="Nombre7" value = "">
+    9thNum : <input type="number" name="Nombre8" value = "">
+    10thNum: <input type="number" name="Nombre9" value = "">
         <input type="submit">
+    
     </form>
 
     <table>
         <?php
-        echo $FirstNumPair;
+        echo "Il y a " . "$NombreDit" . " requettes get";
         ?>
 
     </table>
