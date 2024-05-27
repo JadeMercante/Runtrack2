@@ -39,6 +39,7 @@ function top($Height, $Width) {
 function trunks($Height, $Width) {
     $Width = $Width - 2;
     for ($J = 0; $J < $Width; $J++) {
+        echo "<span>\</span>";
         echo "|";
         echo "<span>/</span>";
         if ($Height < 0) {}

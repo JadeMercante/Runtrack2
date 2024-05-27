@@ -1,22 +1,20 @@
 <?php
-$str = "Les choses que l'on possede finissent par nous posseder";
-$firstLetter = $str[0];
+$str = "Certaines choses changent, et d'autres ne changeront jamais.";
 $len = 0;
-$newstr = "";
 
 for ($i = 0; isset($str[$i]); $i++) {
     $len++;
 }
 
-$lastLetter = $str[$len - 1];
 
 for ($i = 0; $i < $len - 1; $i++) {
-    $str[$i] = $str[$i + 1];
+    if ($i == $len - 2) {
+        echo $str[$i + 1];
+        echo $str[$i - $len + 2];
+    }
+    else {
+        echo $str[$i + 1];
+    }
 }
 
-for ($i = 0; $i < $len - 2; $i++) {
-    $newstr .= $str[$i];
-}
-$fixedStr = $lastLetter . $newstr . $firstLetter;
-echo $fixedStr;
 ?>
