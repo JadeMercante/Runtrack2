@@ -7,24 +7,41 @@ session_start();
 $Dir_Path = '/laragon/www/Runtrack2/Fun/Projet/';
 $File_Name = '';
 $file_path = '';
+$startingSold = 666;
+$savings = 1200;
+$totalall = $startingSold + $savings;
 
 if (isset($_SESSION['File_Name'])) {
     $File_Name = $_SESSION['File_Name'];
-    echo "File name : {$File_Name}";
     $file_path = $Dir_Path . $File_Name;
 }
 
+/*
+
+
+
+
+https://getbootstrap.com/docs/4.0/components/modal/
+
+
+AJOUTER UN MODAL POUR AJOUTER DES VALEURS
+
+
+
+
+
+
+
+*/
+
 if (isset($File_Name) && $File_Name != '') {
     $file_path = $Dir_Path . $File_Name;
-    echo " <br /> File path :" . $file_path . "<br />";
     $rows = file($file_path);
     $num_vars = count($rows);
     if ($num_vars == 0) {
-        $hide = 'visible';
         $bottomhide = 'hidden';
     }
     else{
-        $hide = 'hidden';
         $bottomhide = 'visible';
     }
 }
@@ -33,6 +50,9 @@ if (isset($File_Name) && $File_Name != '') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
     <style>
         table {
@@ -67,12 +87,13 @@ if (isset($File_Name) && $File_Name != '') {
             color: red;
         }
 
-        .TopForm{
-            visibility: <?php echo $hide; ?>;
-        }
 
         .BottomForm{
             visibility: <?php echo $bottomhide; ?>;
+        }
+
+        .RemoveBtn{
+            background-color: red;
         }
 
     </style>
@@ -80,30 +101,24 @@ if (isset($File_Name) && $File_Name != '') {
 
 <body>
 
+<h1>Livre de Caisse.</h1>
+<span>Solde de départ: <?php echo $startingSold ?> € (cashflow mensuel) + <?php echo $savings ?> € (economies)</span>
+<p>Total: <?php echo $totalall ?> €</p>
 <?php
-
-
-
-
-
 echo "<form action='' method='POST'>";
 echo "<input type='text' name='file_name' placeholder='Enter file name' class='NewVarfile'>";
 echo "<button type='submit' name='FileSub' class='NewVarBtn'>Submit</button>";
 echo "</form>";
 
-echo "<form action='' method='POST' class='TopForm'>";
-echo "Adding variable to file {$file_path} <br />:";
-echo "<input type='number' name='New_Var' placeholder='Enter Total Money' class='TopForm'>";
-echo "<button type='submit' name='Submit' class='NewVarBtn'>Submit</button>";
-echo "</form>";
 
 if (isset($_POST['FileSub']) && $_POST['file_name'] != '') {
     $File_Name = $_POST['file_name'];
     $file_path = $Dir_Path . $File_Name;
-    echo "File name : {$File_Name}";
+    $Value_Var_POSTed = 0;
+    $newVarDeclaration = $totalall . " = " . $Value_Var_POSTed;
     if (!file_exists($file_path)) {
         $myfile = fopen($file_path, "w") or die("Unable to open file!");
-        fwrite($myfile, "");
+        fwrite($myfile, $newVarDeclaration);
     } else {
         $myfile = fopen($file_path, "a+") or die("Unable to open file!");
     }
@@ -111,21 +126,9 @@ if (isset($_POST['FileSub']) && $_POST['file_name'] != '') {
     
     
 }
-if (isset($_POST['Submit']) && isset($_POST['New_Var']) && $File_Name != '') {
-    $NewVar = $_POST['New_Var'];
-    $Value_Var_POSTed = 0;
-    if (isset($NewVar) && $NewVar != NULL) {
-        $newVarDeclaration = $NewVar . " = " . $Value_Var_POSTed;
-        
-        if ($File_Name != '' && isset($File_Name)) {
-            $file_path = $Dir_Path . $File_Name;
-            $myfile = fopen($file_path, "a+") or die("Unable to open file!");
-            file_put_contents($file_path, $newVarDeclaration, FILE_APPEND);
-            header("Refresh:0");
-        }
-    }
-}
 ?>
+
+
 
 <table>
     <thead>
@@ -136,14 +139,12 @@ if (isset($_POST['Submit']) && isset($_POST['New_Var']) && $File_Name != '') {
     <tbody>
         <?php    if (isset($File_Name) && $File_Name != '') {
         $file_path = $Dir_Path . $File_Name;
-        echo " <br /> File path :" . $file_path . "<br />";
         $rows = file($file_path);
         $num_vars = count($rows);
-        echo "Destination file : $file_path <br>";
-        echo "Number of variables: " . $num_vars . "<br>";
 
-        if (isset($_POST['Submit']) && file_exists($file_path) || $File_Name != '' || isset($_POST['Submit2'])) {
+        if (file_exists($file_path) || $File_Name != '' || isset($_POST['Submit2'])) {
             $count = 0;
+            $varhidden = "";
             foreach ($rows as $row) {
                 $parteus = explode('\n', $row);
                 $parts = explode('=', $parteus[0]);
@@ -152,15 +153,27 @@ if (isset($_POST['Submit']) && isset($_POST['New_Var']) && $File_Name != '') {
                 $count++;
                 $calcul[$count + 1] = $varValue;
                 $total[$count] = $varName;
-                
+
+
+
+                if ($varValue[0] == 0 ) {
+                    $varhidden = 'hidden';
+                }
+                else {
+                    $varhidden = '';
+                }
+
                 if ($varValue == 0) {
                     $color = 1;
+                    $signe = '';
                 }
                 elseif ($varValue > 0) {
                     $color = 2;
+                    $signe = '+';
                 }
                 elseif ($varValue < 0) {
                     $color = 3;
+                    $signe = ' ';
                 }
                 else{
                     $color = 1;
@@ -178,21 +191,43 @@ if (isset($_POST['Submit']) && isset($_POST['New_Var']) && $File_Name != '') {
                     $colorN = 1;
                 }
                 if ($varName != '' && $varValue != '') {
-                    echo "<tr><td class = 'calcul$color'>&nbsp Calcul : " . $calcul[$count + 1] . "</td></tr><td class = 'total$colorN'>Total : " . $total[$count]. " &nbsp</td></tr>";
+                    echo "<tr><td class = 'calcul$color' $varhidden>&nbsp {$signe}" . $calcul[$count + 1] . "</td></tr><td class = 'total$colorN'>= " . $total[$count]. " &nbsp</td></tr>";
                 }
 
             }
             
             echo "<tr class = 'BottomForm'><td>";
-            echo "<form action='' method='POST' class = 'BottomForm'>";
-            echo "Adding variable to file {$file_path} <br />:";
-            echo "<input type='number' name='Value_Var_POSTed' placeholder='Enter positive, or negative number' class='NewVarText'>";
-            echo "<input type='radio' name='radio' value='positive' required> + (Positif) <input type='radio' name='radio' value='negative'> - (Négagif) <br />";
-            echo "<button type='submit' name='Submit2' class='NewVarBtn'>Submit</button>";
-            echo "</form>";
-            echo "<form action='' method='POST' class = 'BottomForm'>";
-            echo "<button type='submit' name='Remove' class='NewVarBtn'>Remove Last</button>";
-            echo "</form>";
+           
+            echo "<!-- Button trigger modal -->";
+            echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal'>";
+            echo "Gain / Dépense";
+            echo "</button>";
+        
+            echo "<!-- Modal -->";
+            echo "<div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>";
+            echo "<div class='modal-dialog'>";
+                echo "<div class='modal-content'>";
+                echo "<div class='modal-header'>";
+                    echo "<h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>";
+                    echo "<button type='button' class='btn-close' data-dismiss='modal' aria-label='Close'>X</button>";
+                echo "</div>";
+                echo "<div class='modal-body'>";
+                    echo "<form action='' method='POST' class = 'BottomForm'>";
+                    echo "<input type='number' name='Value_Var_POSTed' placeholder='Enter A positive number' min='0' class='NewVarText'>";
+                    echo "<input type='radio' name='radio' value='positive' required> + (Positif) <input type='radio' name='radio' value='negative'> - (Négagif) <br />";
+                    echo "<button type='submit' name='Submit2' class='NewVarBtn'>Submit</button>";
+                    echo "</form>";
+                    echo "<form action='' method='POST' class = 'BottomForm'>";
+                    echo "<button type='submit' name='Remove' class='RemoveBtn'>Remove Last</button>";
+                    echo "</form>";
+                echo "</div>";
+                echo "<div class='modal-footer'>";
+                    echo "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>";
+                echo "</div>";
+                echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        
 
 
 
