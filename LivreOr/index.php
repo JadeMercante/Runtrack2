@@ -1,9 +1,17 @@
 <?php
     session_start();
     if (isset($_SESSION['login'])) {
-        $user = $_SESSION['login'];
+        $login = $_SESSION['login'];
+    $mysqli = mysqli_connect("localhost", "root", "", "livreor");
+    $result = mysqli_query($mysqli, "SELECT * FROM `utilisateurs`");
+
+    foreach($result as $user) {
+        if ($login == $user['login']) {
+            $admin = $user['admin'];
+        }
     }
 
+}
 
 
 ?>
@@ -38,14 +46,32 @@
           <a class="nav-link" href="#">About</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <form method = "post" class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search" name = "search">
+        <input type="submit" name = "searchbtn">
+        <?php 
+            if (isset($_POST['searchbtn'])) {
+                if (isset($_POST['search'])) {
+                $search = $_POST['search'];
+                header("Location: ./userprofile.php?user=$search");
+                }
+            }
+        ?>
       </form>
     </div>
   </div>
 </nav>
     <h1> Jadempinky's Homemade Golden Book </h1>
-
+    <?php
+    if (isset($_SESSION['login'])) {
+    if ($admin == 1) {
+        echo "<a href='./admin.php'>Admin Panel</a>";
+    }
+    }
+    else {
+        echo "Greetings, you are not logged in, you can see the website, but not use it unless you are logged in.";
+        echo "<br /><img src='./media/guest.gif' alt='Happy peoples dancing'>";
+    }
+    ?>
 </body>
 </html>

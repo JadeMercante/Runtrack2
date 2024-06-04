@@ -76,7 +76,7 @@ $mysqli->close();
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="./index.php">Home
+          <a class="nav-link active" href="#">Home
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
@@ -87,9 +87,17 @@ $mysqli->close();
           <a class="nav-link" href="#">About</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <form method = "post" class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search" name = "search">
+        <input type="submit" name = "searchbtn">
+        <?php 
+            if (isset($_POST['searchbtn'])) {
+                if (isset($_POST['search'])) {
+                $search = $_POST['search'];
+                header("Location: ./userprofile.php?user=$search");
+                }
+            }
+        ?>
       </form>
     </div>
   </div>
@@ -124,7 +132,7 @@ $mysqli->close();
             unset($login);
             unset($password);
             session_destroy();
-            header("Location: ./profile.php");
+            header("Location: ./index.php");
         }
         ?>
     </div>
