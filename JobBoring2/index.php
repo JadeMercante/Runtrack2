@@ -3,39 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Crud en php</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
-        <style>
-                th{
-                    text-align: center;
-                    padding: 10px;
-                    margin-left : 10px;
-                    margin-right : 10px;
-                    border: 1px solid black;
-                }
-
-                td{
-                    text-align: center;
-                    padding: 10px;
-                    margin-left : 10px;
-                    margin-right : 10px;
-                    border: 1px solid black;
-                
-                }
-
-                .Editor{
-                    text-align: center;
-                    padding-right: 80px;
-                    margin-left : 10px;
-                    margin-right : 10px;
-                }
-
-                a{
-                    border: 1px solid black;
-                    padding: 7px;
-                }
-
-        </style>
     </head>
     <body>
         <div class="container">
