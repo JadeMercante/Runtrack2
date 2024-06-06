@@ -9,14 +9,19 @@ session_start()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/quartz/bootstrap.min.css">
+    <title>Log-in</title>
+    <style>
+        body{text-align: center;}
+        form{border: 1px solid black; display: flex; flex-direction: column; align-items: center; padding: 10px; max-width: 400px; margin: 0 auto;}
+    </style>
 </head>
 <body>
     <h1>Log-In</h1>
     <form method="POST">
         <input type="text" name="Login" placeholder="Username"><br>
         <input type="password" name="password" placeholder="Password"><br>
-        <input type="submit" name="login" value="login">
+        <input type="submit" name="login" value="login" class="btn btn-success">
     </form>
     <a href = "./inscription.php"><button>Inscription</button></a>
 
@@ -29,10 +34,13 @@ session_start()
         $password = $_POST['password'];
         foreach($result as $user) {
             if ($login == $user['login']) {
-                if ($password == $user['password']) {
+                if (password_verify($password, $user['password'])) {
                     echo "Successfully Logged in";
                     $_SESSION["login"] = $login;
-                    header("refresh:1; url=./index.php");
+                    header("Location: ./index.php");
+                }
+                else {
+                    echo "Wrong password";
                 }
             }
         }
@@ -42,4 +50,117 @@ session_start()
 
     ?>
 </body>
+
+<?php
+class Bcrypt{
+    private $rounds;
+  
+    public function __construct($rounds = 12) {
+      if (CRYPT_BLOWFISH != 1) {
+        throw new Exception("bcrypt not supported in this installation. See http://php.net/crypt");
+      }
+  
+      $this->rounds = $rounds;
+    }
+  
+    public function hash($input){
+      $hash = crypt($input, $this->getSalt());
+  
+      if (strlen($hash) > 13)
+        return $hash;
+  
+      return false;
+    }
+  
+    public function verify($input, $existingHash){
+      $hash = crypt($input, $existingHash);
+  
+      return $hash === $existingHash;
+    }
+  
+    private function getSalt(){
+      $salt = sprintf('$2a$%02d$', $this->rounds);
+  
+      $bytes = $this->getRandomBytes(16);
+  
+      $salt .= $this->encodeBytes($bytes);
+  
+      return $salt;
+    }
+  
+    private $randomState;
+    private function getRandomBytes($count){
+      $bytes = '';
+  
+      if (function_exists('openssl_random_pseudo_bytes') &&
+          (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')) { // OpenSSL is slow on Windows
+        $bytes = openssl_random_pseudo_bytes($count);
+      }
+  
+      if ($bytes === '' && is_readable('/dev/urandom') &&
+         ($hRand = @fopen('/dev/urandom', 'rb')) !== FALSE) {
+        $bytes = fread($hRand, $count);
+        fclose($hRand);
+      }
+  
+      if (strlen($bytes) < $count) {
+        $bytes = '';
+  
+        if ($this->randomState === null) {
+          $this->randomState = microtime();
+          if (function_exists('getmypid')) {
+            $this->randomState .= getmypid();
+          }
+        }
+  
+        for ($i = 0; $i < $count; $i += 16) {
+          $this->randomState = md5(microtime() . $this->randomState);
+  
+          if (PHP_VERSION >= '5') {
+            $bytes .= md5($this->randomState, true);
+          } else {
+            $bytes .= pack('H*', md5($this->randomState));
+          }
+        }
+  
+        $bytes = substr($bytes, 0, $count);
+      }
+  
+      return $bytes;
+    }
+  
+    private function encodeBytes($input){
+      // The following is code from the PHP Password Hashing Framework
+      $itoa64 = './ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+      $output = '';
+      $i = 0;
+      do {
+        $c1 = ord($input[$i++]);
+        $output .= $itoa64[$c1 >> 2];
+        $c1 = ($c1 & 0x03) << 4;
+        if ($i >= 16) {
+          $output .= $itoa64[$c1];
+          break;
+        }
+  
+        $c2 = ord($input[$i++]);
+        $c1 |= $c2 >> 4;
+        $output .= $itoa64[$c1];
+        $c1 = ($c2 & 0x0f) << 2;
+  
+        $c2 = ord($input[$i++]);
+        $c1 |= $c2 >> 6;
+        $output .= $itoa64[$c1];
+        $output .= $itoa64[$c2 & 0x3f];
+      } while (true);
+  
+      return $output;
+    }
+
+
+    
+  }
+
+?>
 </html>

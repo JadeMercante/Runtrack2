@@ -46,7 +46,16 @@
  <title>Crud-Update</title>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-wp-preserve="%3Cscript%20src%3D%22js%2Fbootstrap.js%22%3E%3C%2Fscript%3E" data-mce-resize="false" data-mce-placeholder="1" class="mce-object" width="20" height="20" alt="<script>" title="<script>" />
+ <link href="./media/css/basic.css" rel="stylesheet">
 
+
+ <style>
+   button{
+      margin: 5px;
+   }
+
+
+</style>
  </head>
  <body>
   
@@ -59,10 +68,10 @@
 
 <br />
 <h3>Modifier un contact</h3>
-<p>
+
 
 </div>
-<p>
+
 
 <br />
 <form method="post" action="update.php?id=<?php echo $id ;?>">
@@ -78,10 +87,10 @@
  <span class="help-inline"><?php echo $nameError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 
@@ -96,10 +105,10 @@
  <span class="help-inline"><?php echo $firstnameError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -113,10 +122,10 @@
  <span class="help-inline"><?php echo $ageError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 
@@ -131,10 +140,10 @@
  <span class="help-inline"><?php echo $emailError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 
@@ -149,10 +158,10 @@
  <span class="help-inline"><?php echo $telError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 
@@ -171,7 +180,7 @@
  <span class="help-inline"><?php echo $paysError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 
 
@@ -181,17 +190,17 @@
 
 <br />
 <div class="controls">
- Dev : <input type="checkbox" name="metier" value="dev" <?php if (isset($metier) && $metier == "dev") echo "checked"; ?>>
- Integrateur <input type="checkbox" name="metier" value="integrateur" <?php if (isset($metier) && $metier == "integrateur") echo "checked"; ?>>
- Reseau <input type="checkbox" name="metier" value="reseau" <?php if (isset($metier) && $metier == "reseau") echo "checked"; ?>>
+ Dev : <input type="radio" name="metier" value="dev" <?php if (isset($metier) && $metier == "dev") echo "checked"; ?>> <br />
+ Integrateur <input type="radio" name="metier" value="integrateur" <?php if (isset($metier) && $metier == "integrateur") echo "checked"; ?>> <br />
+ Reseau <input type="radio" name="metier" value="reseau" <?php if (isset($metier) && $metier == "reseau") echo "checked"; ?>> <br />
 </div>
-<p>
+
 
  <?php if (!empty($metierError)): ?>
  <span class="help-inline"><?php echo $metierError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 
 
@@ -206,10 +215,10 @@
  <span class="help-inline"><?php echo $urlError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 
@@ -224,26 +233,26 @@
  <span class="help-inline"><?php echo $commentError; ?></span>
  <?php endif; ?>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
 <div class="form-actions">
  <input type="submit" class="btn btn-success" name="submit" value="submit">
- <a class="btn" href="index.php">Retour</a>
+ <a class="btn btn-primary" href="index.php">Retour</a>
 </div>
-<p>
+
 
  </form>
-<p>
+
 
 
 
 </div>
-<p>
+
 
 
  </body>

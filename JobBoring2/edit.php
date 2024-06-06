@@ -21,6 +21,7 @@ Database::disconnect();
 <meta charset="utf-8">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-wp-preserve="%3Cscript%20src%3D%22js%2Fbootstrap.min.js%22%3E%3C%2Fscript%3E" data-mce-resize="false" data-mce-placeholder="1" class="mce-object" width="20" height="20" alt="<script>" title="<script>" />
+<link href="./media/css/basic.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,10 +38,10 @@ Database::disconnect();
 
 <br />
 <h3>Edition</h3>
-<p>
+
 
 </div>
-<p>
+
 
 
 
@@ -57,10 +58,10 @@ Database::disconnect();
 <?php echo $data['name']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -73,10 +74,10 @@ Database::disconnect();
 <?php echo $data['firstname']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -89,10 +90,10 @@ Database::disconnect();
 <?php echo $data['email']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -105,10 +106,10 @@ Database::disconnect();
 <?php echo $data['tel']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -121,10 +122,10 @@ Database::disconnect();
 <?php echo $data['pays']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -133,14 +134,14 @@ Database::disconnect();
 
 <br />
 <div class="controls">
-<label class="checkbox">
+<label class="radio">
 <?php echo $data['metier']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -153,10 +154,10 @@ Database::disconnect();
 <?php echo $data['url']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
@@ -169,29 +170,29 @@ Database::disconnect();
 <?php echo $data['comment']; ?>
 </label>
 </div>
-<p>
+
 
 </div>
-<p>
+
 
 
 <br />
 <div class="form-actions">
-<a class="btn" href="index.php">Back</a>
+<a class="btn btn-primary" href="index.php">Back</a>
 </div>
-<p>
 
 
-
-</div>
-<p>
-
-</div>
-<p>
 
 
 </div>
-<p>
+
+
+</div>
+
+
+
+</div>
+
 <!-- /container -->
 </body>
 </html>

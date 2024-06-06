@@ -40,6 +40,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM `utilisateurs`");
             }
             if ($userexist) {
                 echo "Le nom d'utilisateur existe déjà";
+
             }
             else {
             $sql = "INSERT INTO `utilisateurs` (login, prenom, nom, password) VALUES ('$login', '$prenom', '$nom', '$password')";

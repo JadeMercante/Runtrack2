@@ -48,7 +48,7 @@ if (!$user || mysqli_num_rows($user) == 0) {
         .row {border: 1px solid black; max-width: 240px;}
 
         .Comment{
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.5);
             color: black;
             border: 1px solid black;
         }
@@ -72,23 +72,29 @@ if (!$user || mysqli_num_rows($user) == 0) {
 <body>
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="./profile.php">Profile</a>
+        <?php
+    if (isset($_SESSION['login'])) {
+      $loginuser = $_SESSION['login'];
+      echo "<a class='navbar-brand' href='./profile.php'>$loginuser</a>";
+    }
+    else{
+      echo "<a class='navbar-brand' href='./profile.php'>Log-In</a>";
+    }
+    ?>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home
+          <a class="nav-link active" href="./index.php">Home
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./livredor.php">Golden Book</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
+ 
       </ul>
       <form method = "post" class="d-flex">
         <input class="form-control me-sm-2" type="search" placeholder="Search" name = "search">
@@ -152,9 +158,26 @@ if (!$user || mysqli_num_rows($user) == 0) {
             }
         }
         else {
+            $someone = false;
             echo "<p>User not found</p>";
+            echo "<p> Here are users close to your research :</p>";
+            $mysqli = mysqli_connect("localhost", "root", "", "livreor");
+            $userfinder = mysqli_query($mysqli, "SELECT * FROM `utilisateurs`");
+            foreach ($userfinder as $row) {
+                similar_text(strtoupper($login2), strtoupper($row['login']), $percent);
+                //echo "<p> Pertage of similarity of " . $login2 . " and " . $row['login'] . " : " . round($percent) . "%</p>";
+                if ($percent > 65) {
+                    $someone = true;
+                    echo "<a href='./userprofile.php?user=" . $row['login'] . "'>" . $row['login'] . "</a> <br />";
+                }
+            }
+            if (!$someone) {
+                echo "No one";
+            }
+            
         }
 
     ?>
 </body>
+
 </html>

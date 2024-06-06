@@ -1,2 +1,2 @@
-SELECT * FROM `salles`
-ORDER BY capacité DESC;
+
+SELECT nom FROM `salles` AND `etage`

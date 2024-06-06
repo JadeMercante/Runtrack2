@@ -58,6 +58,7 @@
                 <th>login</th>
                 <th>password</th>
                 <th>admin</th>
+                <th colspan = "2">Actions</th>
             </tr>
         </thead>
         <tbody>

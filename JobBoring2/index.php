@@ -5,11 +5,12 @@
         <title>Crud en php</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
+        <link href="./media/css/basic.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
             <h2>Crud en Php</h2>
-            <a href="add.php" class="btn btn-success">Ajouter un user</a>
+            <a href="add.php" class="btn btn-success adduser">Ajouter un user</a>
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
@@ -41,7 +42,7 @@
                         echo '<td>' . $row['comment'] . '</td>';
                         echo '<td>' . $row['metier'] . '</td>';
                         echo '<td>' . $row['url'] . '</td>';
-                        echo '<td><a class="btn" href="edit.php?id=' . $row['id'] . '">Read</a> <a class="btn btn-success" href="update.php?id=' . $row['id'] . '">Update</a> <a class="btn btn-danger" href="delete.php?id=' . $row['id'] . '">Delete</a></td>';
+                        echo '<td><a class="btn btn-primary" href="edit.php?id=' . $row['id'] . '">Read</a> <a class="btn btn-success" href="update.php?id=' . $row['id'] . '">Update</a> <a class="btn btn-danger" href="delete.php?id=' . $row['id'] . '">Delete</a></td>';
                         echo '</tr>';
                     }
                     Database::disconnect();
