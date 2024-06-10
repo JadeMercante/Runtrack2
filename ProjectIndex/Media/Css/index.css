@@ -1,0 +1,225 @@
+body{
+    background-color: rgb(255, 142, 212);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 20px;
+}
+
+nav{
+    background-color: rgba(255, 255, 255, 0.411);
+    color: rgb(0, 0, 0);
+    text-align: left;
+    width: 17vw;
+    height: 100vh;
+    font-size: 20px;
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top : 0;
+    left : 0;
+}
+
+
+
+.mainPage{
+    color: rgb(0, 0, 0);
+
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    padding : 5vw;
+}
+
+.legalname{
+    color: beige;
+    position: absolute;
+    z-index: -1;
+}
+
+a, a:enabled, a:visited{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.Home3D{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5vw;
+}
+
+.part1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Home3D:hover > .Home3D4{ 
+    cursor: pointer;
+    animation: Anim3DCube4 1s forwards ease-in-out 1.3s;
+}
+
+.Home3D:hover > .part1 > .Home3D3    {
+    cursor: pointer;
+    animation: Anim3DCube3 1s forwards ease-in-out;
+}
+
+.Home3D:hover > .part1 > .Home3D2{
+    cursor: pointer;
+    animation: Anim3DCube2 1s forwards ease-in-out;
+}
+
+.Home3D:hover > .part1 > .Home3D1{
+    cursor: pointer;
+    animation: Anim3DCube1 1s forwards ease-in-out;
+}
+
+.Home3D1{
+    background-color: red;
+    color: white;
+    width: 4vw;
+    height: 4vw;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    padding : 0.2vw;
+    align-items: center;
+
+}
+
+.Home3D2{
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 0, 0);
+    width: 0vw;
+    height: 4vw;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    padding : 0.1vw;
+    align-items: center;
+    font-size: 0px;
+
+}
+
+.Home3D3{
+    background-color: rgba(255, 255, 255, 0.521);
+    color: rgb(255, 0, 0);
+    width: 0vw;
+    height: 3.5vw;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    padding : 0vw;
+    align-items: center;
+    font-size: 0px;
+    border: 0px solid rgb(255, 255, 255);
+    border-radius: 0px 20px 20px 0px;
+
+}
+
+
+.Home3D4{
+    background-color: rgba(255, 255, 255, 0.521);
+    color: rgb(255, 0, 0);
+    width: 8vw;
+    height: 0vw;
+    display: flex;
+    flex-direction: column;
+    padding : 0vw;
+    align-items: center;
+    font-size: 0px;
+    border: 0px solid rgb(255, 255, 255);
+    margin-left: 4.2vw;
+    border-radius: 0px 0px 20px 20px;
+    top: 0;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+.Home3D5:hover{
+    background-color: gray;
+}
+
+.Home3D5 {
+    width: 8vw;
+    text-align: center;
+}
+
+@keyframes Anim3DCube1{
+    from{
+        width: 4vw;
+        font-size: large;
+        padding: 0.2vw;
+    }
+    to{
+        width: 0vw;
+        font-size: 0px;
+        padding: 0.1vw;
+    }
+}
+
+@keyframes Anim3DCube2{
+    from{
+        width: 0vw;
+        font-size: 0px;
+        padding: 0.1vw;
+    }
+    to{
+        width: 4vw;
+        font-size: large;
+        padding: 0.2vw;
+    }
+}
+
+@keyframes Anim3DCube3{
+    from{
+        width: 0vw;
+        font-size: 0px;
+        padding: 0vw;
+    }
+    to{
+        width: 10vw;
+        font-size: large;
+        padding: 0.2vw;
+        border: 1px solid rgb(255, 255, 255);
+    }
+}
+
+@keyframes Anim3DCube4{
+    from{
+        height: 0vw;
+        font-size: 0px;
+        padding: 0vw;
+    }
+    to{
+        height: 17vw;
+        font-size: 17px;
+        padding: 0.2vw;
+        border: 1px solid rgb(255, 255, 255);
+    }
+}
+
+.Blue{
+    background-color: blue;
+}
+
+.BlueText {
+    color: blue;
+}
+
+.Joblink{
+    color: white;
+}
+
+.Joblink:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+ul, li{
+    list-style-type: none;
+}
