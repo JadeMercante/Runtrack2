@@ -29,31 +29,42 @@ $userexist = false;
         $login = $_POST['Login'];
         $password = $_POST['password'];
         $password2 = $_POST['password2'];
+        if (preg_match('/^[a-zA-Z0-9]{5,20}$/', $login) == false) {
+        echo "The username is invalid";
+        }
+        else{
+          if (preg_match('/^(?=.*[\W_])(?=.*[0-9]).{8,40}$/', $password) == false) {
+          echo "The password is invalid <br />";
+          echo "Please use at least 1 number, 1 letter and 1 special character";
+          }
+          else{
 
-        if ($password != $password2) {
-            echo "Les mots de passes ne sont pas identiques";
+              if ($password != $password2) {
+                  echo "Les mots de passes ne sont pas identiques";
+              }
+              else {
+                  foreach($result as $user) {
+                      if ($login == $user['login']) {
+                          $userexist = true;
+                      }
+                  }
+                  if ($userexist) {
+                      echo "Le nom d'utilisateur existe déjà";
+                  }
+                  else {
+                  $bcrypt = new Bcrypt(15);
+                  $password = $bcrypt->hash($password);
+                  $sql = "INSERT INTO `utilisateurs` (login, password) VALUES ('$login', '$password')";
+                  $mysqli = mysqli_connect("localhost", "root", "", "livreor");
+                  $result = mysqli_query($mysqli, $sql);
+                  if ($result) {
+                      echo "Inscription reussie";
+                      header("Location: ./connexion.php");
+                  }
+              }
         }
-        else {
-            foreach($result as $user) {
-                if ($login == $user['login']) {
-                    $userexist = true;
-                }
-            }
-            if ($userexist) {
-                echo "Le nom d'utilisateur existe déjà";
-            }
-            else {
-            $bcrypt = new Bcrypt(15);
-            $password = $bcrypt->hash($password);
-            $sql = "INSERT INTO `utilisateurs` (login, password) VALUES ('$login', '$password')";
-            $mysqli = mysqli_connect("localhost", "root", "", "livreor");
-            $result = mysqli_query($mysqli, $sql);
-            if ($result) {
-                echo "Inscription reussie";
-                header("Location: ./connexion.php");
-            }
-        }
-        }
+      }
+      }
     }
 
 
