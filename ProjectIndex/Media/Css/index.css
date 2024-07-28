@@ -2,7 +2,7 @@ body{
     background-color: rgb(255, 142, 212);
     color: rgb(0, 0, 0);
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 nav{
@@ -14,9 +14,10 @@ nav{
     font-size: 20px;
     display: flex;
     flex-flow: column;
+    justify-content: center;
     padding: 10px;
     border-radius: 10px;
-    position: absolute;
+    position: fixed;
     top : 0;
     left : 0;
 }
@@ -25,8 +26,7 @@ nav{
 
 .mainPage{
     color: rgb(0, 0, 0);
-
-    width: 100vw;
+    width: auto;
     height: 100vh;
     flex-direction: column;
     padding : 5vw;
@@ -48,7 +48,7 @@ a, a:enabled, a:visited{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5vw;
+    margin: 3vw;
 }
 
 .part1{
@@ -211,15 +211,68 @@ a, a:enabled, a:visited{
     color: blue;
 }
 
+
+.Green{
+    background-color: Green;
+}
+
+.GreenText {
+    color: Green;
+}
+
 .Joblink{
-    color: white;
+    color: white!important;
 }
 
 .Joblink:hover{
-    color: blue;
+    color: blue!important;
     cursor: pointer;
 }
 
-ul, li{
+.Joblink:visited, .Joblink:enabled {
+    text-decoration: none;
+}
+
+
+
+.Joblinkindex{
+    color: rgb(181, 53, 255)!important;
+    font-weight: 600;
+    font-size : 2.3vw;
+}
+
+.Joblinkindex:hover{
+    color: rgb(70, 0, 92)!important;
+    cursor: pointer;
+}
+
+h1, H2, H3 ul, li{
     list-style-type: none;
+}
+
+.imgpreview{
+    width: 6vw;
+    height: 6vw;
+    filter: blur(4px);
+    margin-left: 20px;
+}
+
+.imgpreview:hover{
+    width: 7vw;
+    height: 7vw;
+    filter: blur(0px);
+}
+
+.FolderOpenMain{
+    border-left: 1px dashed black;
+    text-align: left;
+    padding-left: 0;
+    margin-left: -10px;
+    padding-bottom: 15px;
+}
+
+.FileExplorer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

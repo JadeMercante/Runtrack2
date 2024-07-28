@@ -14,4 +14,5 @@ $desc = "Voici une liste non-exhaustive des projets que j'ai creer";
 $day = "Jour";
 $daytext = "Projets faits";
 $Welcomeday = "Voici la liste d'exercices de $currentday";
+$Jobs = "Jobs";
 ?>
