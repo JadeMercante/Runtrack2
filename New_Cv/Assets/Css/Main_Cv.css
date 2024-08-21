@@ -149,6 +149,39 @@ a:hover {
     animation: GrowHole 16s ease-in-out 25s forwards;
 }
 
+.languageflag{
+    position: sticky;
+    top: 10px;
+    left: 10px;
+    width: 10vh;
+    height: 6vh;
+    z-index: 997;
+    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.en{
+    background-image: url("../Images/en.png");
+    background-size: cover;
+    transition: background-image 0.8s ease;
+}
+
+.en:hover {
+    background-image: url("../Images/fr.png");
+    transition: background-image 0.8s ease;
+}
+
+.fr:hover {
+    background-image: url("../Images/en.png");
+    transition: background-image 0.8s ease;
+}
+
+.fr{
+    background-image: url("../Images/fr.png");
+    background-size: cover;
+    transition: background-image 0.8s ease;
+}
+
 .img-hole{
     width: 100px;
     height: 100PX;
@@ -257,14 +290,14 @@ a:hover {
 
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .col-md-4, .col-md-8 {
         flex: 0 0 100%;
         max-width: 100%;
     }
 
     body{
-        font-size: 3VW;
+        font-size: 4VW;
     }
 
     .img-hole{
@@ -296,8 +329,12 @@ a:hover {
         max-width: 100%;
     }
 
+    h1{
+        font-size: 6VW;
+    }
+
     body{
-        font-size: 3VW;
+        font-size: 4VW;
     }
 
     .img-me{

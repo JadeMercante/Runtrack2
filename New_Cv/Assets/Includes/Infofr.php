@@ -88,4 +88,10 @@ $xpTravail = [
         ]
     ]
 ];
+
+$hobbies = [
+    "Jeux Videos",
+    "Lecture",
+    "Coder"
+];
 ?>
