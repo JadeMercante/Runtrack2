@@ -1,0 +1,133 @@
+body{
+    background-image: url('../Image/Wallpaper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke: 0.7px rgb(0, 0, 0);
+    text-align: center;
+    overflow: scroll;
+}
+/*
+.start-up{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color : black;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+}
+*/
+
+
+.start-up{
+    display: none;
+}
+
+
+.modal {
+    display: none;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: fit-content;
+    transform: scale(0);
+    overflow: auto;
+}
+
+.modal-header{
+    background-color: #d6d6d6;
+    height: 40px;
+    top: 0;
+    width: 100%;
+}
+
+.modal-content {
+    border: solid 1px black;
+    position:relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    padding-top: 0px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 800px;
+    height : fit-content;
+    text-align: center;
+    z-index: 7;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ShownFolder{
+    display: block;
+    position: absolute;
+    z-index: 5;
+    transform: scale(1);
+}
+
+.folder_icon{
+    font-size: 25px;
+    z-index: 3;
+    width: 55px;
+    height: 55px;
+}
+
+.WebFile:hover {
+    background-color: rgba(171, 230, 253, 0.233);
+}
+
+.folder_icon:hover{
+    background-color: rgba(171, 230, 253, 0.233);
+}
+
+.clicked_icon{
+    background-color: rgba(171, 243, 253, 0.233);
+}
+
+.Content_Web{
+    width: 600px;
+    height : 800px;
+    background-color: rgb(255, 255, 255);
+}
+
+.webframe{
+    width: 90%;
+    height: 90%;
+    overflow: scroll;
+    
+}
+
+.WebFile::before{
+    content: '🌎';
+}
+
+.foldername::before{
+    content: '📁';
+}
+
+.FolderOpenMain{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 55px);
+    grid-auto-rows: 55px;
+    gap: 5px;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+}

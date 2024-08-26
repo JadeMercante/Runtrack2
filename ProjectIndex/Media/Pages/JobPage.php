@@ -30,7 +30,7 @@ function displayFiles($directory) {
         if ($file != '.' && $file != '..') {
             $filePath = $directory . "/" . $file;
             if (is_dir($filePath)) {
-                echo "<li>$file :</li>";
+                echo "<li class = 'foldername'>$file :</li>";
                 echo "<ul class = 'FolderOpen'>";
                 displayFiles($filePath);
                 echo "</ul>";
@@ -39,9 +39,9 @@ function displayFiles($directory) {
                     echo "<li><a class='Joblinkindex' href='/runtrack2/ProjectIndex/Media/Media/$filePath'>$file</a></li>";
                 }
                 elseif (substr($file, -4) == '.jpg' || substr($file, -5) == '.jpeg' || substr($file, -4) == '.png') {
-                    echo "<li><a href='/runtrack2/ProjectIndex/Media/Media/$filePath'><img class='imgpreview' src='/runtrack2/ProjectIndex/Media/Media/$filePath'></img></a></li>";
+                    echo "<li class = 'file'><a href='/runtrack2/ProjectIndex/Media/Media/$filePath'><img class='imgpreview' src='/runtrack2/ProjectIndex/Media/Media/$filePath'></img></a></li>";
                 } else {
-                echo "<li><a class='Joblink' href='/runtrack2/ProjectIndex/Media/Media/$filePath'>$file</a></li>";
+                echo "<li><p class='Joblink file'>$file</p></li>";
                 }
             }
         }

@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(255, 142, 212);
+    background-color: #adadad;
     color: rgb(0, 0, 0);
     text-align: center;
     font-size: 18px;
@@ -220,13 +220,10 @@ a, a:enabled, a:visited{
     color: Green;
 }
 
-.Joblink{
-    color: white!important;
-}
 
 .Joblink:hover{
     color: blue!important;
-    cursor: pointer;
+    cursor:not-allowed;
 }
 
 .Joblink:visited, .Joblink:enabled {
@@ -275,4 +272,71 @@ h1, H2, H3 ul, li{
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.mainPage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: black!important;
+}
+
+.mainPage h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.FileExplorer {
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.FolderOpenMain,
+.FolderOpen {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.FolderOpenMain > li,
+.FolderOpen > li {
+    margin-bottom: 10px;
+}
+
+.FolderOpenMain > .foldername:before {
+    content: "📁";
+    margin-right: 5px;
+}
+
+.file:before {
+    content: "📄";
+    margin-right: 5px;
+}
+
+.Joblink,
+.Joblinkindex {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.Joblink:hover,
+.Joblinkindex:hover {
+    text-decoration: underline;
+}
+
+.Joblinkindex {
+    font-weight: bold;
+}
+
+.imgpreview {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.imgpreview:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
